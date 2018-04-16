@@ -1,12 +1,12 @@
 # site
-title: Louie
-baseurl: "/louie"
-url: "http://lily.work"
-favicon: "/assets/sample/ico.png"
+title: cam carter
+baseurl: "/welcome"
+url: "https://camcarter.com"
+favicon: "/assets/images/ico.png"
 g_analytics: UA-12345678-1
 
 # bio
-header: Louie
+header: Cam Carter
 desc: >
   A Jekyll theme (that looks awesome). Louie is free, lightweight,
   and customizable as a blog, archive, or portfolio.
@@ -22,7 +22,6 @@ prev-next: true
 
 # build settings
 markdown: kramdown
-# theme: louie
 exclude:
   - Gemfile
   - Gemfile.lock
