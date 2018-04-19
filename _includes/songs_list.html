@@ -15,13 +15,6 @@
 					Date
 				{% endif %}
 			</div>
-			<div class="row__cat">
-				{% if site.song_cat %}
-					{{ site.song_cat }}
-				{% else %}
-					Category
-				{% endif %}
-			</div>
 		</li>
 		{% for song in site.songs %}
 			<li class="row__post">
@@ -35,9 +28,6 @@
 						{% else %}
 							{{ song.date | date: "%b %-d, %Y" }}
 						{% endif %}
-					</div>
-					<div class="row__cat {% if include.uid == post.id %}row__active{% endif %}">
-						{{ post.category }}
 					</div>
 				</a>
 				{% if song.img %}

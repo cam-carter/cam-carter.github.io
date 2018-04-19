@@ -1,6 +1,6 @@
 # site
 title: cam carter
-baseurl: "/welcome"
+baseurl: ""
 url: "https://camcarter.com"
 favicon: "/assets/images/ico.png"
 g_analytics: UA-12345678-1
@@ -8,14 +8,18 @@ g_analytics: UA-12345678-1
 # bio
 header: Cam Carter
 desc: >
-  A Jekyll theme (that looks awesome). Louie is free, lightweight,
-  and customizable as a blog, archive, or portfolio.
+  Hello world! Welcome to my corner of the internet.
+  (or is the internet round?)
 
 # posts
-date_format: "%Y"
+date_format: "%-d %B %Y"
 post_title: Story
-post_date: Year
+post_date: Date
 post_cat: Genre
+# songs
+date_format: "%-d %B %Y"
+song_title: Title
+song_date: Date
 
 # post detail
 prev-next: true

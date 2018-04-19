@@ -79,8 +79,8 @@ body {
   position: absolute;
   max-width: 500px;
   max-height: 500px;
-  top: -23px;
-  left: 315px;
+  top: -44px;
+  left: 286px;
   z-index: -1;
   opacity: 0;
   transition: opacity 500ms; }
@@ -137,17 +137,17 @@ body {
     display: block;
     opacity: 0.5; }
   .row__post:nth-child(2n) .row__img {
-    top: 77px;
-    left: 242px; }
+    top: -18px;
+    left: 421px; }
   .row__post:nth-child(3n) .row__img {
-    top: 9px;
-    left: 345px; }
+    top: 97px;
+    left: 372px; }
   .row__post:nth-child(4n) .row__img {
-    top: 6px;
-    left: 205px; }
+    top: 97px;
+    left: 95px; }
   .row__post:nth-child(5n) .row__img {
-    top: -121px;
-    left: 365px; } }
+    top: -137px;
+    left: 491px; } }
 @media screen and (min-width: 600px) {
   .row__cols,
   .row__post {
