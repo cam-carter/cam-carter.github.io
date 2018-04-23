@@ -13,13 +13,8 @@ desc: >
 
 # posts
 date_format: "%-d %B %Y"
-post_title: Story
+post_title: Title
 post_date: Date
-post_cat: Genre
-# songs
-date_format: "%-d %B %Y"
-song_title: Title
-song_date: Date
 
 # post detail
 prev-next: true

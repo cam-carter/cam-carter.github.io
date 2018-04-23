@@ -2,6 +2,7 @@
 layout: song
 title: Her name rhymes with the moon
 author: Cam Carter
+category: music
 ---
 
 Her name rhymes with the moon
