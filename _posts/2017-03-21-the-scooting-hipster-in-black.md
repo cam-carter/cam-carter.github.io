@@ -2,7 +2,7 @@
 layout: post
 title: The scooting hipster in black
 author: Cam Carter
-category: post
+category: story
 ---
 Is he on his way to a funeral? Can't be. It's twelve past 8. Who has a funeral that early in the morning? And I see him every day that time, so it defeats the hypothesis. Well come to think of it that might be a good time for one... Also he's too happy. The only bit of white that flashes by are his ankles (even on a cold day), his speed-torn face, and a tooth-filled grin. I only ever see him going fast. Begs the question if he ever slows down.
 
