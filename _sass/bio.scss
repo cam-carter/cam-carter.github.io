@@ -3,6 +3,38 @@
   margin-bottom: 50px;
 }
 
+.site__title {
+	margin-bottom: 20px;
+	font-weight: 700;
+	float: left;
+
+	a {
+		text-decoration: none;
+		&:hover {
+			text-decoration: none;
+		}
+	}
+}
+
+.site__nav {
+	float: right;
+
+	.nav__trigger {
+		display: none;
+	}
+
+	.menu__icon {
+		display: none;
+	}
+
+	.page__link {
+		// gaps between nav items, but not on the last one
+		&:not(:last-child) {
+			margin-right: 20px;
+		}
+	}
+}
+
 .bio__header {
   margin-bottom: 20px;
   font-weight: 700;

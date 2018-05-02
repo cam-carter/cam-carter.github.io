@@ -1,0 +1,23 @@
+---
+layout: default
+---
+
+<div class="bio">
+	{% if page.title %}
+		<div class="bio__header">
+			<a href="{{ site.url }}{{ "/" | relative.url }}">
+				{{ site.header }}
+			</a>
+		</div>
+	{% endif %}
+
+	{{ content }}
+
+	{% if site.data.social %}
+		<ul class="bio__social">
+			{% for item in site.data.social %}
+				<li><a href="{{ item.url }}" target="_blank">{{ item.title }}</a></li>
+			{% endfor %}
+		</ul>
+	{% endif %}
+</div>

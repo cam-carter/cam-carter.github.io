@@ -27,7 +27,7 @@
           {{ content }}
         </div>
 
-        {% if site.prev-next and site.categories['story'] %}
+        {% if site.prev-next %}
           <div class="post__paginate">
             {% if page.previous.url %}
               <a class="post__paginate-left" href="{{ site.url }}{{ page.previous.url | relative_url }}">{{ page.previous.title }}</a>
@@ -40,7 +40,7 @@
         {% endif %}
       </div>
 
-      {% include posts_list.html uid=page.id %}
+      {% include songs_list.html uid=page.id %}
     </div>
   </body>
 

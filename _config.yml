@@ -13,11 +13,11 @@ desc: >
 
 # posts
 date_format: "%-d %B %Y"
-post_title: Title
-post_date: Date
+# post_title: Title
+# post_date: Date
 
 # post detail
-prev-next: true
+prev-next: false
 
 # build settings
 markdown: kramdown
