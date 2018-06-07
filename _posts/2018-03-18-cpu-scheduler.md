@@ -5,7 +5,7 @@ author: Cam Carter & Todd Loupe
 category: project
 ---
 
-# CPU Scheduler Simulator
+# [CPU Scheduler Simulator](https://github.com/cam-carter/cpu-scheduler)
 
 A simple CPU scheduler written in Python for COSCA365, Operating Systems.  This simulation implements a FCFS scheduling algorithm.
 
