@@ -1,0 +1,44 @@
+<h1 id="cpu-scheduler-simulator">CPU Scheduler Simulator</h1>
+
+<p>A simple CPU scheduler written in Python for COSCA365, Operating Systems.  This simulation implements a FCFS scheduling algorithm.</p>
+
+<p>To run simply input the following into your cli:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ python scheduler.py 10
+</code></pre></div></div>
+<p>The number <code class="highlighter-rouge">10</code> here is your inputed <code class="highlighter-rouge">time_quantum</code> for the program.  You can input any <code class="highlighter-rouge">time_quantum</code> you like as long as its an <code class="highlighter-rouge">int</code>.</p>
+
+<h1 id="dictionary-of-variables">Dictionary of Variables</h1>
+
+<p>Note that because Python does not inherently declare variable types, we will list the type of value the variables will be used according to other languages. Additionally, other variables may be necessary, such as <code class="highlighter-rouge">temp</code> variables, which may not be reflected in the dictionary of variables. These will be made clear inside of the code.</p>
+
+<h2 id="basic-housekeeping-variables">Basic housekeeping variables</h2>
+<ol>
+  <li><code class="highlighter-rouge">sysclock</code> - this variable will take the <code class="highlighter-rouge">int</code> type and represent the system clock, beginning from 0.</li>
+  <li><code class="highlighter-rouge">time_quantum</code>- time quantum for the program. Givin by a command line argument to the scheduler, ex. <code class="highlighter-rouge">python scheduler.py 10</code> where the number <code class="highlighter-rouge">10</code> is the program <code class="highlighter-rouge">time_quantum</code></li>
+  <li><code class="highlighter-rouge">number_of_processes</code> - total number of processes for the scheduler.  Hard-coded into the pogram and is decremented whenever a process is terminated; once <code class="highlighter-rouge">number_of_processes == 0</code> the main loop breaks and the program is halted.</li>
+  <li><code class="highlighter-rouge">total_processes</code> - set equal to the <code class="highlighter-rouge">number_of_processes</code> in the beginning of the pogram.  Since <code class="highlighter-rouge">number_of_processes</code> is decremented, <code class="highlighter-rouge">total_processes</code> is used make runtime calculations after main loop is broken.</li>
+  <li><code class="highlighter-rouge">switch_counter</code> - used to count number of loops during a <code class="highlighter-rouge">context_switch</code>. Initially it is set to <code class="highlighter-rouge">1</code> and when <code class="highlighter-rouge">switch_counter &gt; 5</code> the <code class="highlighter-rouge">context_switch</code> breaks</li>
+  <li><code class="highlighter-rouge">num_context</code> - this variable will take the <code class="highlighter-rouge">int</code> type and it will hold the total number of context switches performed.</li>
+  <li><code class="highlighter-rouge">cpu_util</code> - this variable will take the <code class="highlighter-rouge">float</code> type and it will display the percentage of total time the CPU is running.</li>
+  <li><code class="highlighter-rouge">parser</code> - the <code class="highlighter-rouge">ArgumentParser</code> object imported from Python’s <code class="highlighter-rouge">argparse</code> module. Allows the use of command line arguments, so the user can input <code class="highlighter-rouge">time_quantum</code></li>
+  <li><code class="highlighter-rouge">args</code> - arguments parsed by the <code class="highlighter-rouge">parser</code>.</li>
+</ol>
+
+<h2 id="process-specific-variables">Process-specific variables</h2>
+<p>In this program, we will be creating and using a <code class="highlighter-rouge">process</code> object.</p>
+
+<ol>
+  <li><code class="highlighter-rouge">process[]</code> - process dictionary that holds a <code class="highlighter-rouge">process[i]</code> where <code class="highlighter-rouge">i = pid</code>; the dictionary contains <code class="highlighter-rouge">Process</code> objects. Used to iterate through while creating the processes from the text files provided.</li>
+  <li><code class="highlighter-rouge">pid</code> - this will be the Process ID, an <code class="highlighter-rouge">int</code>, assigned to each process uniquely.</li>
+  <li><code class="highlighter-rouge">burst_times</code> - deque containing individual <code class="highlighter-rouge">burst_time</code> variables. Used to pop and append <code class="highlighter-rouge">burst_time</code> for running or waiting process.</li>
+  <li><code class="highlighter-rouge">wait_times</code> - deque containing individual <code class="highlighter-rouge">wait_time</code> variables. Used to pop and append <code class="highlighter-rouge">wait_time</code> for running or waiting process.</li>
+  <li><code class="highlighter-rouge">arrival_time</code> - time at which the process arrives in the program.  Checked in the beginning of the program with a loop testing <code class="highlighter-rouge">arrival_time</code> against <code class="highlighter-rouge">sysclock</code>.</li>
+  <li><code class="highlighter-rouge">inputfile</code> - file to create the process from.</li>
+</ol>
+
+<h2 id="queues">Queues</h2>
+
+<ol>
+  <li><code class="highlighter-rouge">ready</code> - this queue will be the “ready” queue for <code class="highlighter-rouge">process</code> objects that are ready to be run by the CPU.</li>
+  <li><code class="highlighter-rouge">wait</code> - this queue will be the “wait” queue for <code class="highlighter-rouge">process</code> objects that are waiting for their wait time to decrease.</li>
+</ol>

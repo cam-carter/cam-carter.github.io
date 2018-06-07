@@ -1,0 +1,72 @@
+<h1 id="workforwardnola----">Workforwardnola <a href="https://www.codefactor.io/repository/github/loyno-mathcs/workforwardnola"><img src="https://www.codefactor.io/repository/github/loyno-mathcs/workforwardnola/badge" alt="CodeFactor" /></a> <a href="https://www.codacy.com/app/nihonjinrxs/workforwardnola?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=loyno-mathcs/workforwardnola&amp;utm_campaign=Badge_Grade"><img src="https://api.codacy.com/project/badge/Grade/c6e79f4eeece4ae1a4d60cba9943f5ed" alt="Codacy Badge" /></a> <a href="https://codebeat.co/projects/github-com-loyno-mathcs-workforwardnola-master"><img src="https://codebeat.co/badges/3384331f-ae8f-494f-a568-a1a23dc493a7" alt="codebeat badge" /></a> <a href="https://travis-ci.org/loyno-mathcs/workforwardnola"><img src="https://travis-ci.org/loyno-mathcs/workforwardnola.svg?branch=master" alt="Travis CI" /></a></h1>
+<p>Job seeker focused website for NOLA. There is a version live at http://careerpathnola.com (hosted by the City of New Orleans).</p>
+
+<h2 id="dev-setup">Dev setup</h2>
+<p>Requires Ruby 2.2.5 and Postgres (9.5+ preferred).</p>
+
+<p>After cloning the repository for the first time, run <code class="highlighter-rouge">bundle install</code> in the <code class="highlighter-rouge">workforwardnola</code> directory.</p>
+
+<p>Copy <code class="highlighter-rouge">.env.example</code> to a new file called <code class="highlighter-rouge">.env</code>. You can leave the admin password as-is for development, or change it.</p>
+
+<h3 id="database-setup">Database Setup</h3>
+<p>Make sure <a href="https://devcenter.heroku.com/articles/heroku-postgresql#set-up-postgres-on-mac">Postgres is installed</a>: <code class="highlighter-rouge">which psql</code> should give a reasonable answer. Also create a file called <code class="highlighter-rouge">.env</code> with the line <code class="highlighter-rouge">DATABASE_URL=postgres://localhost:5432/workforwardnola</code>. (You may need to create a new DB in postgres called <code class="highlighter-rouge">workforwardnola</code>.)</p>
+
+<p>Run <code class="highlighter-rouge">rake db:migrate</code> and <code class="highlighter-rouge">rake db:seed</code> to set up the database structure and fill it with sample data. If the data doesn’t show up, try running <code class="highlighter-rouge">rake db:reset</code> and <code class="highlighter-rouge">rake db:seed</code>. Career data can also be loaded via <a href="http://localhost:9292/manage">http://localhost:9292/manage</a>. and a spreadsheet.</p>
+
+<h3 id="running-app--deployment">Running app &amp; deployment</h3>
+<p>Run the app by running <code class="highlighter-rouge">bin/start</code>, with an optional command line argument <code class="highlighter-rouge">"$IP:$PORT"</code>, all it does is call <code class="highlighter-rouge">rerun -p "**/*.{rb,js,scss,mustache,ru,jpg,jpeg,png}" rackup</code>. The site will be available at <a href="http://localhost:9292">http://localhost:9292</a>. If there are errors when you try to refresh to see changes, try again - you may have been faster than the app regenerated.</p>
+
+<p>The Code for America NOLA fellows team is no longer actively developing this. We had set up a deployment pipeline via heroku, syncing the staging site with the master branch and enabling review apps for pull requests. It worked well!</p>
+
+<p>The “Email to yourself” career assessment feature requires the <code class="highlighter-rouge">EMAIL_xxxx</code> config variables to be set. We use the <a href="https://github.com/benprew/pony">pony</a> gem to send emails, please see their documentation for more details.</p>
+
+<p>Some changes have included various AWS services. In addition to SMTP from the pony gem, several config variables must be set for AWS services (S3 and SES). These are new additions added below the <code class="highlighter-rouge">EMAIL_xxxx</code> config variables.</p>
+
+<p>Setting up SES: <code class="highlighter-rouge">SENDER_EMAIL</code>, <code class="highlighter-rouge">OWNER_EMAIL</code>, <code class="highlighter-rouge">AWS_ACCESS</code>, <code class="highlighter-rouge">AWS_SECRET</code> must all be configured in <code class="highlighter-rouge">.env</code> for the SES to work through the job form.</p>
+
+<p>Setting up S3: Configure <code class="highlighter-rouge">AWS_BUCKET</code> in <code class="highlighter-rouge">.env</code></p>
+
+<p>There is additionally an optional feature to write to google sheets using a file <code class="highlighter-rouge">client_secret.json</code>. An example is included in <code class="highlighter-rouge">client_secret.json.example</code>. If you do not wish to use this feature, do not create or use <code class="highlighter-rouge">client_secret.json</code>! You can find information on the <a href="https://github.com/gimite/google-drive-ruby">google-drive-ruby</a> GitHub.</p>
+
+<h2 id="updating-content">Updating content</h2>
+<p>For details on updating content see other files under the <code class="highlighter-rouge">docs/</code> folder. Details on updating career info via spreadsheet specifically is in <a href="docs/career_assessment_how_to.md">docs/career_assessment_how_to.md</a>.</p>
+
+<h2 id="deploying-to-production">Deploying to production</h2>
+<p>The <code class="highlighter-rouge">ADMIN_xxxx</code> and <code class="highlighter-rouge">EMAIL_xxxx</code> config variables need to be set regardless of the deployment. <code class="highlighter-rouge">ADMIN_USER</code> and <code class="highlighter-rouge">ADMIN_PASSWORD</code> protect the <code class="highlighter-rouge">/manage</code> part of the site, and the <code class="highlighter-rouge">EMAIL_xxxx</code> variables are for the <a href="https://github.com/benprew/pony">pony</a> gem. After the app is up, make sure to load the career data via <a href="http://your_url_here/manage">http://your_url_here/manage</a>.</p>
+
+<h3 id="redeploying-for-another-city">Redeploying for another city</h3>
+<p>Most of the content is specific to New Orleans and the Opportunity Centers, including which careers are highlighted.</p>
+
+<h3 id="heroku">Heroku</h3>
+<p>Setting up a Heroku pipeline is relatively straightforward. We set up a pipeline with a staging app (with automatic deploys from the master branch), production app (we periodically promote the app from staging to production), and review apps enabled. We used the Postgres add-on.</p>
+
+<h3 id="aws">AWS</h3>
+<p>We are not AWS experts, so if you have recommendations to improve the following, please make a PR! <strong>We found that this requires at least a t2.micro instance to avoid out of memory errors during deployment.</strong></p>
+
+<ol>
+  <li>Create an IAM user (as recommended by Amazon) with appropriate permissions for deployment credentials. @antislice has no idea what specific permissions are needed for EB deployment, so we tested with admin.</li>
+  <li>Install the Elastic Beanstalk client.</li>
+  <li>Follow the Create an Application steps in <a href="http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create_deploy_Ruby_sinatra.html#create_deploy_Ruby_eb_init">this documentation</a>.
+    <ul>
+      <li>For steps 5/6, select <code class="highlighter-rouge">Ruby</code> and <code class="highlighter-rouge">Ruby 2.2 (Puma)</code></li>
+    </ul>
+    <ul>
+      <li>SSH login is optional, but convenient
+        <ol>
+          <li>At this point, you’ll want to set up the DB. We created an integrated Postgres database instance (v. 9.5.2) as described in <a href="http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/using-features.managing.db.html">here</a>.</li>
+          <li>Walk through <a href="http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create_deploy_Ruby_sinatra.html#create_deploy_Ruby_eb_env">Create an Environment</a></li>
+          <li>‼️ At this point, stop and check on the instance type. You may need to configure a VPC.</li>
+          <li>Try deploying: <code class="highlighter-rouge">eb deploy</code></li>
+        </ol>
+
+        <p>Configuring the “email to yourself” feature requires extra configuration on EB.</p>
+
+        <p>Further notes on our initial test deployment and changes that were made:</p>
+        <ul>
+          <li><a href="https://github.com/codeforamerica/workforwardnola/pull/108">PR #108</a> contains the code and configuration changes we made to the app to get it to work with AWS (Elastic Beanstalk)</li>
+          <li>Some of the process is described in <a href="https://github.com/codeforamerica/workforwardnola/issues/106">#106</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ol>

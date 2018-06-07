@@ -5,11 +5,6 @@ author: Cam Carter
 category: music
 ---
 
-<audio controls="controls">
-	<source type="audio/mp3" src=""></source>
-	<p><em>this is an alt tag... your browser 
-</audio>
-
 Gentle lines and lullabies  
 Bittersweet kisses and a slow goodbye  
 Push me away, but let me stay  
