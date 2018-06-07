@@ -8,13 +8,11 @@ g_analytics: UA-12345678-1
 # bio
 header: Cam Carter
 desc: >
-  Hello world! Welcome to my corner of the internet.
+  Hello, world! Welcome to my corner of the internet.
   (or is the internet round?)
 
 # posts
 date_format: "%-d %B %Y"
-# post_title: Title
-# post_date: Date
 
 # post detail
 prev-next: false
