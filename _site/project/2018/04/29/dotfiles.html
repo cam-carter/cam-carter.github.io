@@ -6,7 +6,7 @@
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
 
   <title>dotfiles</title>
-  <meta name="description" content="______________ &amp;lt; cam carter&#39;s &amp;gt; &amp;lt; dotfiles &amp;gt; -------------- \ ^__^ \ (oo)\_______ (__)\ )\/\ ||----w | || || # another dotfile repo? yes What the...">
+  <meta name="description" content="______________ &amp;lt; cam carter&#39;s &amp;gt; &amp;lt; dotfiles &amp;gt; -------------- \ ^__^ \ (oo)\_______ (__)\ )\/\ ||----w | || || # another dotfiles repo? yes">
 
   
   <link rel="icon" href="/assets/images/ico.png" />
@@ -49,34 +49,29 @@
 	       (__)\       )\/\
 		   ||----w |
 		   ||     ||
-				# another dotfile repo? yes
+				# another dotfiles repo? yes
 </code></pre></div></div>
 
-<h2 id="what-the-heck-is-this">What the heck is this?</h2>
+<h2 id="dotfiles"><a href="https://github.com/cam-carter/dotfiles">dotfiles</a></h2>
 
 <p><strong>Disclaimer: these dotfiles are constantly changing, because I can never make up my mind on how things should work</strong></p>
 
-<p>This repo contains dotfile configurations. It also contains a deployment script to install Vim, zsh, and tmux, if you do not have them already. The included software and there configuration files are meant to be a lightweight toolkit usable on any UNIX-based machine, <em>hopefully</em>.</p>
+<p>This repo contains my environment configurations. It also contains a deployment script to install neovim and zsh, if you do not have them already. The included software and there configuration files are meant to be a lightweight toolkit usable on any UNIX-based machine, <em>hopefully</em>.</p>
 
 <ul>
   <li>A ton of vim plugins (and some zsh) all in one place, curated and customized for (my) your enjoyment!</li>
   <li>A simple deployment scipt that (should work) works on every system!</li>
-  <li>Custom functions and aliases that will make (my) your life easier!</li>
+  <li>Custom functions and aliases that will make life inside your terminal easier!</li>
 </ul>
 
 <p><strong>Don’t be afraid! Fork this repository!</strong></p>
 
 <h2 id="installation">Installation</h2>
-<p>To install and deploy, copy and paste the following commands into your terminal:</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd ~
 git clone https://github.com/cam-carter/dotfiles
 cd dotfiles
 ./deploy
 </code></pre></div></div>
-
-<p>Requires Vim version 8 and for macOS users, <a href="https://brew.sh">Homebrew</a></p>
-
-<p><em>Everything should work with Neovim (which I will be transitioning to in the coming months), if you switch over all the config files</em></p>
 
 <h3 id="keeping-things-up-to-date">Keeping things up to date.</h3>
 <p>You don’t have to worry about updating these configuration files every time the master branch is changed. The following few lines of code, found in <code class="highlighter-rouge">~/dotfiles/zsh/lib/zshrc-manager.sh</code>, updates the main git repository and the included submodules whenever a new terminal is launched:</p>
@@ -87,106 +82,62 @@ source $HOME/dotfiles/zsh/zshrc.sh
 
 <h2 id="whats-included">What’s included?</h2>
 
-<h3 id="vim">Vim</h3>
-<p>Your grandpa’s text editor! <a href="https://www.vim.org">Vim</a> has been in active development since 1979 with the release of vi in 2BSD. It is open-source and highly configurable… what’s not to love?</p>
-
-<p>The configuration files included in this repo provide some improved key-bindingsand also a bundle of plugins useful for editing with Vim. Vim is a very difficult program to learn and get used to, but once you are able to conquer the steep learning curve, the power you command is incomparable (except for maybe Emacs).</p>
-
 <h4 id="plugins">Plugins</h4>
-<p>All Vim plugins in this package are managed by <a href="https://github.com/tpope/vim-pathogen">pathogen.vim</a>.</p>
+<p>All Vim plugins in this package are managed with <a href="https://github.com/junegunn/vim-plug">vim-plug</a>.</p>
 
-<p>To add new plugins to Vim you can either place them inside <code class="highlighter-rouge">~/.vim/bundle</code> or you can add them as a submodule under <code class="highlighter-rouge">~/dotfiles/vim/.vim/bundle</code>. For example, to install <a href="https://github.com/tpope/vim-fugitive">fugitive.vim</a> (which is included with these dotfiles), run the following commands:</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd ~/dotfiles/vim/.vim/bundle
-git submodule add https://github.com/tpope/vim-fugitive
-</code></pre></div></div>
-
-<p>The plugins are currently sourced using a symbolic link between <code class="highlighter-rouge">~/.vim/bundle</code> and <code class="highlighter-rouge">~/dotfiles/vim/.vim/bundle</code>.</p>
-
+<h5 id="good-defaults">Good defaults</h5>
 <ul>
-  <li><a href="https://github.com/vim-fugitive">fugitive.vim</a> - a Git wrapper so awesome, it should be illegal</li>
-  <li><a href="https://github.com/vim-gitgutter">vim-gitgutter</a> - a vim plugin which shows a git diff in the gutter (sign column) and stages/undoes hunks</li>
-  <li><a href="https://github.com/nathanaelkane/vim-indent-guides">vim-indent-guides</a> - true Sublime Text style multiple selections for vim</li>
-  <li><a href="https&quot;//github.com/terryma/vim-multiple-cursors&quot;">vim-multiple-cursors</a></li>
-  <li><a href="https://github.com/tpope/vim-rails">rails.vim</a> - Ruby on Rails power tools</li>
-  <li><a href="https://github.com/SirVer/ultisnips">UtliSnips</a> - the ultimate snippet solution for vim</li>
-  <li><a href="https://github.com/honza/vim-snippets">vim-snippets</a> - snippets files for various programming languages</li>
-  <li><a href="https://github.com/tpope/vim-surround">surround.vim</a> - quoting/parenthesizing made simple</li>
-  <li><a href="https://github.com/nvie/vim-flake8">vim-flake8</a> - Flake8 plugin for vim</li>
-  <li><a href="https://github.com/altercation/vim-colors-solarized">vim-colors-solarized</a> - precision colorscheme for vim text editor</li>
-  <li><a href="https://github.com/vim-scripts/AutoClose">vim-autoclose</a> - inserts matching delimeters</li>
-  <li><a href="https://github.com/vim-airline/vim-airline">vim-airline</a> - lean &amp; mean status/tabline for vim that’s light as air
-    <ul>
-      <li><a href="https://github.com/vim-airline/vim-airline-themes">vim-airline-themes</a> - a collection of themes for vim-airline</li>
-    </ul>
-  </li>
-  <li><a href="https://github.com/mbbill/undotree">undotree</a> - the ultimate undo history visualizer for vim</li>
-  <li><a href="https://github.com/godlygeek/tabular">tabular</a> - vim script for text filtering and alignment</li>
-  <li><a href="https://github.com/vim-syntastic/syntastic">syntastic</a> - syntax checking hacks for vim</li>
-  <li><a href="https://github.com/tmhedberg/SimpylFold">SimpylFold</a> - no-bs python code folding for vim</li>
-  <li><a href="https://github/scrooloose/nerdtree">NERDTree</a> - a tree explorer plugin for vim
-    <ul>
-      <li><a href="https://github.com/Xuyuanp/nerdtree-git-status">nerdtree-git-plugin</a> - a plugin for NERDTree showing git status</li>
-    </ul>
-  </li>
-  <li><a href="https://github.com/scrooloose/nerdcommenter">NERDCommenter</a>- vim plugin for improved commenting functionality</li>
-  <li><a href="https://github.com/junegunn/goyo.vim">goyo.vim</a> - distraction-free writing in vim
-    <ul>
-      <li><a href="https://github.com/junegunn/limelight.vim">limelight.vim</a> - hyperfocus-writing in vim</li>
-    </ul>
-  </li>
-  <li><a href="https://github.com/vim-scripts/indentpython.vim">indentpython.vim</a> - an alternative indentation script for python</li>
-  <li><a href="https://github.com/ctrlpvim/ctrlp.vim">ctrlp.vim</a> - Fuzzy file, buffer, mru, tag, etc finder</li>
+  <li><a href="https://github.com/editorconfig/editorconfig-vim">editorconfig-vim</a></li>
+  <li><a href="https://github.com/tpope/vim-abolish">vim-abolish</a></li>
+  <li><a href="https://github.com/tpope/vim-repeat">vim-repeat</a></li>
+  <li><a href="https://github.com/tpope/vim-sensible">vim-sensible</a></li>
+  <li><a href="https://github.com/jimmay5469/vim-spacemacs">vim-spacemacs</a></li>
 </ul>
 
-<h3 id="zsh">Zsh</h3>
-<p><a href="https://www.zsh.org">Zsh</a> (Z shell) is a Unix shell that can be used as a powerful command interpreter for shell scripting. The first version of Zsh was written by Paul Falstad in 1990.</p>
+<h5 id="navigation">Navigation</h5>
+<ul>
+  <li><a href="https://github.com/junegunn/fzf.vim">fzf</a></li>
+  <li><a href="https://github.com/francoiscabrol/ranger.vim">ranger.vim</a></li>
+  <li><a href="https://github.com/terryma/vim-multiple-cursors">vim-multiple-cursors</a></li>
+  <li><a href="https://github.com/tpope/vim-vinegar">vim-vinegar</a></li>
+</ul>
 
-<p>Attached with these dotfiles include an assortment of Zsh plugins, managed with <a href="https://ohmyz.sh">Oh My Zsh!</a>, and custom aliases and functions.</p>
+<h5 id="theme">Theme</h5>
+<ul>
+  <li><a href="https://github.com/romainl/Apprentice">Apprentice</a></li>
+  <li><a href="https://github.com/chriskempson/base16-vim">base16-vim</a></li>
+  <li><a href="https://github.com/nightsense/cosmic_latte">cosmic_latte</a></li>
+  <li><a href="https://github.com/sheerun/vim-polyglot">polyglot</a></li>
+  <li><a href="https://github.com/ap/vim-css-color">vim-css-color</a></li>
+  <li><a href="https://github.com/nightsense/cosmic_latte">vim-diminactive</a></li>
+  <li><a href="https://github.com/tpope/sjl/vitality.vim">vitality.vim</a></li>
+</ul>
 
-<h4 id="aliases--functions">Aliases &amp; Functions</h4>
+<h5 id="git">Git</h5>
+<ul>
+  <li><a href="https://github.com/vim-fugitive">fugitive.vim</a></li>
+  <li><a href="https://github.com/mhinz/vim-signify">vim-signify</a></li>
+</ul>
 
-<table>
-  <thead>
-    <tr>
-      <th>Function</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code class="highlighter-rouge">cd</code></td>
-      <td>Works like the default <code class="highlighter-rouge">cd</code> function, but it also lists the contents of the directory that you change into.</td>
-    </tr>
-    <tr>
-      <td><code class="highlighter-rouge">ctrl+k</code></td>
-      <td>This function changes to the parent directory <code class="highlighter-rouge">cd ..</code></td>
-    </tr>
-    <tr>
-      <td><code class="highlighter-rouge">ctrl+h</code></td>
-      <td>This function changes to the user’s home directory <code class="highlighter-rouge">cd ~</code></td>
-    </tr>
-    <tr>
-      <td><code class="highlighter-rouge">ctrl+l</code></td>
-      <td>This function lists the contents of the working directory <code class="highlighter-rouge">ls</code></td>
-    </tr>
-    <tr>
-      <td><code class="highlighter-rouge">ctrl+space</code></td>
-      <td>This function clears the current terminal window <code class="highlighter-rouge">clear</code></td>
-    </tr>
-    <tr>
-      <td><code class="highlighter-rouge">ctrl+g</code></td>
-      <td>While inside a git repository, this function will add all changes to be committed, commit the changes, using the buffer as the commit message, and then push the changes upstream <code class="highlighter-rouge">git add -A; git commit -m "$BUFFER" &amp;&amp; git push</code></td>
-    </tr>
-    <tr>
-      <td><code class="highlighter-rouge">enter</code></td>
-      <td>If the buffer is empty, the enter key lists the contents of the current directory <code class="highlighter-rouge">ls</code>. If it buffer is empty and the working direcotry is a git repository, then it will show the git status of the current repository <code class="highlighter-rouge">git status</code></td>
-    </tr>
-  </tbody>
-</table>
+<h5 id="autocomplete">Autocomplete</h5>
+<ul>
+  <li><a href="https://github.com/Shougo/deoplete.nvim">deoplete.nvim</a></li>
+  <li><a href="https://github.com/jiangmiao/auto-pairs">auto-pairs</a></li>
+  <li><a href="https://github.com/mattn/emmet-vim">emmet-vim</a></li>
+  <li><a href="https://github.com/tpope/vim-commentary">vim-commentary</a></li>
+  <li><a href="https://github.com/tpope/vim-endwise">vim-endwise</a></li>
+  <li><a href="https://github.com/sdbchd/neoformat">sbdchd/neoformat</a> - <em>currently experiencing issues with Crystal files</em></li>
+</ul>
 
-<h3 id="tmux">tmux</h3>
-
-<p>tmux is a terminal multiplexer, allowing a user to access multiple terminal sessions inside a single terminal window or a remote terminal session. It is extremely useful for handling multiple running terminal sessions.</p>
+<h5 id="misc">Misc.</h5>
+<ul>
+  <li><a href="https://github.com/airblade/vim-rooter">vim-rooter</a></li>
+  <li><a href="https://github.com/junegunn/goyo.vim">goyo.vim</a>
+    <ul>
+      <li><a href="https://github.com/junegunn/limelight.vim">limelight.vim</a></li>
+    </ul>
+  </li>
+</ul>
 
         </div>
 
